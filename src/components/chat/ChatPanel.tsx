@@ -15,11 +15,21 @@ interface Props {
   onSend: (text: string) => void
   onClose: () => void
   lang: string
+  msgCount: number
+  msgLimit: number
+  maxInputLen: number
 }
 
-export default function ChatPanel({ messages, typing, input, quickReplies, onInput, onSend, onClose, lang: _lang }: Props) {
+export default function ChatPanel({
+  messages, typing, input, quickReplies,
+  onInput, onSend, onClose, lang: _lang,
+  msgCount, msgLimit, maxInputLen,
+}: Props) {
   const { t } = useTranslation()
   const streamRef = useRef<HTMLDivElement>(null)
+  const limited = msgCount >= msgLimit
+  const remaining = msgLimit - msgCount
+  const showCounter = remaining <= 3 && !limited
 
   useEffect(() => {
     const el = streamRef.current
@@ -28,7 +38,7 @@ export default function ChatPanel({ messages, typing, input, quickReplies, onInp
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSend(input)
+    if (!limited) onSend(input)
   }
 
   return (
@@ -52,9 +62,7 @@ export default function ChatPanel({ messages, typing, input, quickReplies, onInp
       >
         <span
           className="w-11 h-11 rounded-full flex-none border-2 border-white/65"
-          style={{
-            background: '#3a1a08 url(/assets/gween-bot.png) center -3px/155% no-repeat',
-          }}
+          style={{ background: '#3a1a08 url(/assets/gween-bot.png) center -3px/155% no-repeat' }}
         />
         <div>
           <h5 className="text-[15.5px] font-bold text-white m-0 tracking-[0.01em]">{t('chat.name')}</h5>
@@ -86,60 +94,108 @@ export default function ChatPanel({ messages, typing, input, quickReplies, onInp
         {typing && <TypingIndicator />}
       </div>
 
-      {/* Quick chips */}
-      <div className="flex flex-wrap gap-2 px-[15px] py-[2px_0_12px] pt-1 pb-3">
-        {quickReplies.map((q) => (
-          <button
-            key={q}
-            className="border rounded-full cursor-pointer font-semibold text-[12.5px] px-[13px] py-2 font-sans transition-all duration-200"
-            style={{
-              borderColor: 'rgba(255,122,24,.42)',
-              background: 'rgba(255,122,24,.09)',
-              color: '#ffbb63',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255,122,24,.22)'
-              e.currentTarget.style.transform = 'translateY(-1px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255,122,24,.09)'
-              e.currentTarget.style.transform = ''
-            }}
-            onClick={() => onSend(q)}
-          >
-            {q}
-          </button>
-        ))}
-      </div>
+      {/* Quick chips — hidden when rate-limited */}
+      {!limited && (
+        <div className="flex flex-wrap gap-2 px-[15px] pt-1 pb-3">
+          {quickReplies.map((q) => (
+            <button
+              key={q}
+              className="border rounded-full cursor-pointer font-semibold text-[12.5px] px-[13px] py-2 font-sans transition-all duration-200"
+              style={{
+                borderColor: 'rgba(255,122,24,.42)',
+                background: 'rgba(255,122,24,.09)',
+                color: '#ffbb63',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255,122,24,.22)'
+                e.currentTarget.style.transform = 'translateY(-1px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255,122,24,.09)'
+                e.currentTarget.style.transform = ''
+              }}
+              onClick={() => onSend(q)}
+            >
+              {q}
+            </button>
+          ))}
+        </div>
+      )}
 
-      {/* Input */}
-      <form
-        className="flex items-center gap-2 p-[11px_12px] border-t border-line"
-        style={{ background: '#150b04' }}
-        onSubmit={handleSubmit}
-      >
-        <input
-          className="flex-1 rounded-full px-4 py-3 text-[14px] font-sans outline-none transition-colors"
-          style={{
-            background: '#241408',
-            border: '1px solid rgba(255,255,255,.09)',
-            color: '#f6f0e7',
-          }}
-          placeholder={t('chat.placeholder')}
-          value={input}
-          onChange={(e) => onInput(e.target.value)}
-          onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,122,24,.55)' }}
-          onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.09)' }}
-        />
-        <button
-          type="submit"
-          className="flex-none w-[42px] h-[42px] rounded-full border-0 grid place-items-center text-white cursor-pointer"
-          style={{ background: 'linear-gradient(135deg,#ff7a18,#ffbb63)' }}
-          aria-label="Envoyer"
+      {/* Input / rate-limit footer */}
+      {limited ? (
+        <div
+          className="flex flex-col items-center gap-2 p-[14px_16px] border-t border-line text-center"
+          style={{ background: '#150b04' }}
         >
-          <IconSend size={18} />
-        </button>
-      </form>
+          <p className="text-[12.5px] leading-[1.4]" style={{ color: '#a99a8b' }}>
+            {_lang === 'fr'
+              ? 'Limite atteinte — contacte Gween directement :'
+              : 'Limit reached — contact Gween directly:'}
+          </p>
+          <div className="flex gap-3 flex-wrap justify-center">
+            <a
+              href="mailto:kangahhansberryl7@outlook.com"
+              className="text-[12px] font-bold px-3 py-1.5 rounded-full"
+              style={{ background: 'rgba(255,122,24,.15)', color: '#ff9d3d' }}
+            >
+              📧 Email
+            </a>
+            <a
+              href="tel:+18195928576"
+              className="text-[12px] font-bold px-3 py-1.5 rounded-full"
+              style={{ background: 'rgba(255,122,24,.15)', color: '#ff9d3d' }}
+            >
+              📞 819 592-8576
+            </a>
+          </div>
+        </div>
+      ) : (
+        <form
+          className="flex flex-col gap-1 border-t border-line"
+          style={{ background: '#150b04' }}
+          onSubmit={handleSubmit}
+        >
+          {/* Remaining count badge */}
+          {showCounter && (
+            <p
+              className="text-center text-[11.5px] pt-2"
+              style={{ color: remaining === 1 ? '#ff7a18' : '#a99a8b' }}
+            >
+              {_lang === 'fr'
+                ? `${remaining} question${remaining > 1 ? 's' : ''} restante${remaining > 1 ? 's' : ''}`
+                : `${remaining} question${remaining > 1 ? 's' : ''} remaining`}
+            </p>
+          )}
+          <div className="flex items-center gap-2 p-[10px_12px]">
+            <input
+              className="flex-1 rounded-full px-4 py-3 text-[14px] font-sans outline-none transition-colors"
+              style={{
+                background: '#241408',
+                border: '1px solid rgba(255,255,255,.09)',
+                color: '#f6f0e7',
+              }}
+              placeholder={t('chat.placeholder')}
+              value={input}
+              onChange={(e) => onInput(e.target.value)}
+              onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,122,24,.55)' }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.09)' }}
+              maxLength={maxInputLen}
+              autoComplete="off"
+              spellCheck={false}
+            />
+            <button
+              type="submit"
+              disabled={!input.trim()}
+              className="flex-none w-[42px] h-[42px] rounded-full border-0 grid place-items-center text-white cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ background: 'linear-gradient(135deg,#ff7a18,#ffbb63)' }}
+              aria-label="Envoyer"
+            >
+              <IconSend size={18} />
+            </button>
+          </div>
+        </form>
+      )}
     </motion.div>
   )
 }
