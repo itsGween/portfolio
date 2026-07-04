@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "about": "About",
+    "skills": "Skills",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact me"
+  },
+  "hero": {
+    "headline": "CREATE",
+    "sub": "Interfaces that inspire. Code that connects.",
+    "cta": "SEE MY PROJECTS",
+    "tagline": "Full-stack graduate, Highest Distinction · GPA 4.007 · Bilingual FR/EN",
+    "testimonial": {
+      "quote": "Gween delivered rigorous, high-quality work that exceeded our expectations.",
+      "author": "GénieLab · InnovaCité",
+      "sub": "Applied research"
+    }
+  },
+  "stats": [
+    { "num": "4.007", "unit": "", "lab": "GPA — Highest Distinction" },
+    { "num": "6", "unit": "+", "lab": "Full-stack projects delivered" },
+    { "num": "22", "unit": "", "lab": "API endpoints integrated (SmartCart)" },
+    { "num": "FR", "unit": "/EN", "lab": "Bilingual — oral & written" }
+  ],
+  "about": {
+    "eyebrow": "About",
+    "title": "Full-stack developer, from idea to deployment.",
+    "lead": "Graduated in Computer Engineering Technology (Highest Distinction), I build complete web and mobile applications: from reactive, accessible frontends to the APIs and cloud infrastructure behind them.",
+    "body": "Rigorous, autonomous, and passionate about delivering quality code, I thrive in collaborative Agile environments. Based in Ottawa, authorized to work in Canada, immediately available.",
+    "chips": ["React · TypeScript", "Node · NestJS · FastAPI", "PostgreSQL · Cassandra", "Azure · Docker · CI/CD"]
+  },
+  "skills": {
+    "eyebrow": "Skills",
+    "title": "A {{grad}}complete stack{{/grad}}, from pixel to server."
+  },
+  "projects": {
+    "eyebrow": "Selected projects",
+    "title": "What I {{grad}}build{{/grad}}.",
+    "cta": "Case study"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "How I can {{grad}}help you{{/grad}}."
+  },
+  "timeline": {
+    "eyebrow": "Background",
+    "title": "Experience & education."
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Dev {{grad}}notes{{/grad}}.",
+    "subtitle": "Field notes, patterns, and lessons learned from real projects.",
+    "all": "All articles",
+    "read": "Read article"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's make something",
+    "serif": "incredible.",
+    "sub": "A project, a position, or a collaboration? Write to me — I respond quickly.",
+    "labels": {
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "availability": "Availability"
+    },
+    "values": {
+      "location": "Ottawa, ON — Canada",
+      "availability": "Employment & freelance — available"
+    }
+  },
+  "footer": {
+    "copy": "© 2026 Gween Hans-Berryl Kangah — Full Stack Developer, Ottawa.",
+    "top": "Back to top",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "chat": {
+    "name": "Gigi",
+    "role": "Gween's Assistant",
+    "placeholder": "Write your message…",
+    "teaser": "A question? Chat with Gigi",
+    "quick": ["My background", "My projects", "My stack", "Availability"],
+    "welcome": "Hello! I'm Gigi, Gween's assistant 👋 I can tell you about her background, projects, skills or availability. How can I help?"
+  },
+  "cv": {
+    "download": "Download CV",
+    "fr": "FR",
+    "en": "EN"
+  },
+  "palette": {
+    "placeholder": "Search…",
+    "sections": {
+      "nav": "Navigation",
+      "actions": "Actions"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "projects": "Projets",
+    "about": "À propos",
+    "skills": "Compétences",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Me contacter"
+  },
+  "hero": {
+    "headline": "CRÉER",
+    "sub": "Des interfaces qui inspirent. Du code qui connecte.",
+    "cta": "VOIR MES PROJETS",
+    "tagline": "Full-stack diplômée Grande Distinction · GPA 4.007 · Bilingue FR/EN",
+    "testimonial": {
+      "quote": "Gween a livré un travail rigoureux et de qualité, au-delà de nos attentes.",
+      "author": "GénieLab · InnovaCité",
+      "sub": "Recherche appliquée"
+    }
+  },
+  "stats": [
+    { "num": "4.007", "unit": "", "lab": "GPA — Grande Distinction" },
+    { "num": "6", "unit": "+", "lab": "Projets full-stack livrés" },
+    { "num": "22", "unit": "", "lab": "Endpoints API intégrés (SmartCart)" },
+    { "num": "FR", "unit": "/EN", "lab": "Bilingue — oral & écrit" }
+  ],
+  "about": {
+    "eyebrow": "À propos",
+    "title": "Développeuse full-stack, de l'idée au déploiement.",
+    "lead": "Diplômée en Technologie du génie informatique (Grande Distinction), je conçois des applications web et mobiles complètes : des interfaces frontend réactives et accessibles jusqu'aux APIs et à l'infrastructure cloud qui les soutiennent.",
+    "body": "Rigoureuse, autonome et passionnée par la livraison de code de qualité, j'aime le travail collaboratif en environnement Agile. Basée à Ottawa, autorisée à travailler au Canada, disponible immédiatement.",
+    "chips": ["React · TypeScript", "Node · NestJS · FastAPI", "PostgreSQL · Cassandra", "Azure · Docker · CI/CD"]
+  },
+  "skills": {
+    "eyebrow": "Compétences",
+    "title": "Une {{grad}}stack complète{{/grad}}, du pixel au serveur."
+  },
+  "projects": {
+    "eyebrow": "Projets sélectionnés",
+    "title": "Ce que je {{grad}}construis{{/grad}}.",
+    "cta": "Étude de cas"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Comment je peux {{grad}}vous aider{{/grad}}."
+  },
+  "timeline": {
+    "eyebrow": "Parcours",
+    "title": "Expérience & formation."
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Notes de {{grad}}développement{{/grad}}.",
+    "subtitle": "Retours d'expérience, patterns et leçons apprises sur des projets réels.",
+    "all": "Tous les articles",
+    "read": "Lire l'article"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Faisons quelque chose",
+    "serif": "d'incroyable.",
+    "sub": "Un projet, un poste ou une collaboration ? Écrivez-moi — je réponds vite.",
+    "labels": {
+      "email": "Email",
+      "phone": "Téléphone",
+      "location": "Localisation",
+      "availability": "Disponibilité"
+    },
+    "values": {
+      "location": "Ottawa, ON — Canada",
+      "availability": "Emploi & freelance — disponible"
+    }
+  },
+  "footer": {
+    "copy": "© 2026 Gween Hans-Berryl Kangah — Développeuse Full Stack, Ottawa.",
+    "top": "Retour en haut",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "chat": {
+    "name": "Gigi",
+    "role": "Assistante de Gween",
+    "placeholder": "Écris ton message…",
+    "teaser": "Une question ? Discute avec Gigi",
+    "quick": ["Mon parcours", "Mes projets", "Ma stack", "Disponibilité"],
+    "welcome": "Bonjour ! Je suis Gigi, l'assistante de Gween 👋 Je peux te parler de son parcours, ses projets, ses compétences ou sa disponibilité. Comment puis-je t'aider ?"
+  },
+  "cv": {
+    "download": "Télécharger le CV",
+    "fr": "FR",
+    "en": "EN"
+  },
+  "palette": {
+    "placeholder": "Rechercher…",
+    "sections": {
+      "nav": "Navigation",
+      "actions": "Actions"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Couleurs ── */
+  --color-ink:   #140b06;
+  --color-ink2:  #1c1109;
+  --color-card:  #211308;
+  --color-line:  rgb(255 255 255 / 9%);
+  --color-cream: #f6f0e7;
+  --color-muted: #a99a8b;
+  --color-o1:    #ff7a18;
+  --color-o2:    #ff9d3d;
+  --color-o3:    #ffbb63;
+
+  /* ── Typographie ── */
+  --font-sans:    'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Anton', sans-serif;
+  --font-serif:   'Playfair Display', serif;
+}
+
+/* ── Reset & base ── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+  p  { margin: 0; }
+  a  { color: inherit; text-decoration: none; }
+}
+
+/* ── Shared utilities ── */
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.sec {
+  padding: 120px 0;
+  position: relative;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-o2);
+}
+
+.grad {
+  background: linear-gradient(100deg, var(--color-o1), var(--color-o3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--color-ink); }
+::-webkit-scrollbar-thumb  { background: var(--color-card); border-radius: 3px; }
+
+/* ── Keyframes ── */
+@keyframes btb {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30%            { opacity: 1;   transform: translateY(-4px); }
+}
+
+@keyframes tpop {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid var(--color-o1);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 900px) {
+  .wrap { padding: 0 24px; }
+  .sec  { padding: 80px 0; }
+}
