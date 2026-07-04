@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import ChatButton from './ChatButton'
 import ChatTeaser from './ChatTeaser'
 import ChatPanel from './ChatPanel'
+import { GroqProvider } from '@/lib/groq-provider'
 import { OllamaProvider } from '@/lib/ollama-provider'
 import { getFallbackResponse } from '@/lib/fallback-responses'
 import { SYSTEM_PROMPT } from '@/data/knowledge-base'
@@ -21,7 +22,9 @@ const MAX_INPUT_LEN = 600
 // Keep only the last N exchanges in the LLM context (prevents context overflow)
 const MAX_HISTORY = 14
 
-const provider = new OllamaProvider()
+// Groq (prod) → Ollama (local) → keyword fallback
+const groq = new GroqProvider()
+const provider = groq.available ? groq : new OllamaProvider()
 
 export default function ChatWidget() {
   const { t, i18n } = useTranslation()
