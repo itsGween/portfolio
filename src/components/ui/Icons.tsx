@@ -76,6 +76,12 @@ export const IconDownload = (p: SvgProps) =>
 export const IconGlobe = (p: SvgProps) =>
   <Svg {...p} d={['M12 3a9 9 0 100 18A9 9 0 0012 3z', 'M3 12h18', 'M12 3c-2.5 3-4 5.7-4 9s1.5 6 4 9', 'M12 3c2.5 3 4 5.7 4 9s-1.5 6-4 9']} />
 
+export const IconChevronDown = (p: SvgProps) =>
+  <Svg {...p} d={['M6 9l6 6 6-6']} />
+
+export const IconExternalLink = (p: SvgProps) =>
+  <Svg {...p} d={['M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6', 'M15 3h6v6', 'M10 14L21 3']} />
+
 export function getIconByName(name: string) {
   const map: Record<string, (p: SvgProps) => React.JSX.Element> = {
     code: IconCode,

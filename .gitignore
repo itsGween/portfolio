@@ -36,3 +36,5 @@ DESIGN_AUDIT.md
 *.njsproj
 *.sln
 *.sw?
+
+.vercel

@@ -38,7 +38,15 @@
   "projects": {
     "eyebrow": "Projets sélectionnés",
     "title": "Ce que je {{grad}}construis{{/grad}}.",
-    "cta": "Étude de cas"
+    "cta": "Étude de cas",
+    "github": "Code source",
+    "architecture": "Architecture & captures",
+    "architectureHide": "Masquer l'architecture & captures",
+    "diagramAlt": "Diagramme d'architecture",
+    "docs": "Documentation",
+    "highlights": "Ce que ça démontre",
+    "role": "Rôle",
+    "keyFeatures": "Fonctionnalités clés"
   },
   "services": {
     "eyebrow": "Services",

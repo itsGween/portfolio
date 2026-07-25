@@ -67,15 +67,46 @@ PROJETS
    Cluster Docker 3 nœuds (RF=3), 12 tables CQL
    Modélisation NoSQL pour système de réservation
 
+5. SecureGate
+   Service d'identité et de contrôle d'accès, sécurité "by design"
+   Stack : Java 21, Spring Boot 4.1, Spring Security 7, PostgreSQL 17, React 19, TypeScript, GC Design System, Docker
+   Authentification par mot de passe haché en Argon2id, MFA par TOTP (QR code, codes de récupération),
+   RBAC granulaire (ADMIN / AUDITEUR / UTILISATEUR via @PreAuthorize), JWT access court + refresh long
+   révocable et haché en base, verrouillage de compte après échecs répétés, journal d'audit complet
+   (qui/quoi/quand/IP) filtrable, tableau de bord admin.
+   Interface entièrement bilingue FR/EN construite avec le GC Design System (Système de conception
+   du gouvernement du Canada) — signal fort pour une candidature au gouvernement fédéral canadien.
+   L'application conteneurisée sert aussi de cible à un vrai test d'intrusion (Nmap, Hydra, John the
+   Ripper, OWASP ZAP), démarche à la fois offensive et défensive, avec un rapport structuré publié.
+   Pas de démo live publique (déploiement Docker local). Licence MIT, 2026.
+
+6. Auditeur d'accessibilité WCAG
+   Outil web qui audite l'accessibilité d'une URL publique selon WCAG 2.1 niveau AA
+   Stack : React 18, TypeScript, NestJS, Prisma, PostgreSQL, Playwright, axe-core, Recharts, GC Design System
+   Scan réel via navigateur headless (Playwright + moteur axe-core), pas un simple fetch HTML.
+   Violations groupées par critère WCAG 2.1, sévérité, extrait HTML fautif et sélecteur CSS.
+   Tableau de bord des scans avec score de conformité, historique par site et graphique de tendance,
+   export PDF et CSV, génération d'une déclaration de conformité au format d'une vraie déclaration
+   d'accessibilité gouvernementale. Interface bilingue avec contenu réellement dupliqué (pas juste des
+   libellés traduits) et URL distincte par langue (/fr, /en). Protection SSRF (URLs publiques uniquement).
+   Construit avec le GC Design System du gouvernement du Canada.
+   Pas de démo live publique (déploiement Docker local). Licence MIT, 2026.
+
+   SecureGate et l'Auditeur WCAG forment ensemble une série de portfolio orientée gouvernement fédéral
+   canadien : les deux sont bilingues FR/EN réels et construits avec le GC Design System — je démontre
+   une compréhension concrète des normes numériques fédérales, pas juste en théorie.
+
 ────────────────────────────────
 COMPÉTENCES TECHNIQUES
 ────────────────────────────────
 Langages : TypeScript, JavaScript, Java, Kotlin, Python, SQL, CQL
-Frontend : React, Angular, Jetpack Compose, Tailwind CSS, Framer Motion, Vite
-Backend : Node.js, NestJS, FastAPI, Spring Boot, REST, WebSocket
+Frontend : React, Angular, Jetpack Compose, Tailwind CSS, Framer Motion, Vite, GC Design System
+Backend : Node.js, NestJS, FastAPI, Spring Boot, Spring Security, Prisma, REST, WebSocket
 BDD : PostgreSQL, Cassandra, NoSQL
 Cloud : Azure, Railway, Cloudflare, Cloudinary
 DevOps : Docker, Jenkins, Git, CI/CD, Tests, OWASP
+Sécurité applicative : Argon2id, MFA/TOTP, RBAC, JWT, journal d'audit, Nmap, Hydra, OWASP ZAP
+Accessibilité : WCAG 2.1 AA, axe-core, Playwright, audit et conformité
 
 ────────────────────────────────
 SOFT SKILLS
