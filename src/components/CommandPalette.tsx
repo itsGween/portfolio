@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { IconSearch, IconArrow, IconDownload } from '@/components/ui/Icons'
+import { getCvUrl } from '@/data/cv'
 
 interface PaletteItem {
   id: string
@@ -24,10 +25,10 @@ export default function CommandPalette() {
     { id: 'services',  label: t('nav.services'),  group: t('palette.sections.nav'),     action: () => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }), icon: <IconArrow size={14} /> },
     { id: 'blog',      label: t('nav.blog'),      group: t('palette.sections.nav'),     action: () => document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' }), icon: <IconArrow size={14} /> },
     { id: 'contact',   label: t('nav.contact'),   group: t('palette.sections.nav'),     action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), icon: <IconArrow size={14} /> },
-    { id: 'cv',        label: t('cv.download'),   group: t('palette.sections.actions'), action: () => { const a = document.createElement('a'); a.href = '/CV_Gween_Kangah_FAC.docx'; a.download = ''; a.click() }, icon: <IconDownload size={14} /> },
+    { id: 'cv',        label: t('cv.download'),   group: t('palette.sections.actions'), action: () => { const a = document.createElement('a'); a.href = getCvUrl(i18n.language); a.download = ''; a.click() }, icon: <IconDownload size={14} /> },
     { id: 'lang-fr',   label: 'Passer en Français', group: t('palette.sections.actions'), action: () => { i18n.changeLanguage('fr'); localStorage.setItem('lang', 'fr') } },
     { id: 'lang-en',   label: 'Switch to English',   group: t('palette.sections.actions'), action: () => { i18n.changeLanguage('en'); localStorage.setItem('lang', 'en') } },
-    { id: 'email',     label: 'kangahhansberryl7@outlook.com', group: t('palette.sections.actions'), action: () => window.location.href = 'mailto:kangahhansberryl7@outlook.com', icon: <IconArrow size={14} /> },
+    { id: 'email',     label: 'gween.hkangah@gmail.com', group: t('palette.sections.actions'), action: () => window.location.href = 'mailto:gween.hkangah@gmail.com', icon: <IconArrow size={14} /> },
   ]
 
   const filtered = items.filter((item) =>

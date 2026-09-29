@@ -22,7 +22,7 @@
     { "num": "4.007", "unit": "", "lab": "GPA — Grande Distinction" },
     { "num": "6", "unit": "+", "lab": "Projets full-stack livrés" },
     { "num": "22", "unit": "", "lab": "Endpoints API intégrés (SmartCart)" },
-    { "num": "FR", "unit": "/EN", "lab": "Bilingue — oral & écrit" }
+    { "num": "FR", "unit": "/EN", "lab": "Français natif · anglais intermédiaire, en progression" }
   ],
   "about": {
     "eyebrow": "À propos",

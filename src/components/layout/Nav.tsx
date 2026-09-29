@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useScrolled } from '@/hooks/useScrolled'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
 import { IconMenu, IconDownload, IconGlobe } from '@/components/ui/Icons'
+import { getCvUrl } from '@/data/cv'
 import MobileMenu from './MobileMenu'
 
 const SECTION_IDS = ['projets', 'apropos', 'competences', 'services']
@@ -84,8 +85,11 @@ export default function Nav() {
 
           {/* CV download */}
           <a
-            href="/CV_Gween_Kangah_FAC.docx"
+            href={getCvUrl(i18n.language)}
             download
+            type="application/pdf"
+            hrefLang={i18n.language.startsWith('en') ? 'en' : 'fr'}
+            aria-label={`${t('cv.download')} (PDF)`}
             className="flex items-center gap-2 text-[12px] font-bold tracking-[0.02em] px-3 py-1.5 rounded-full border border-cream/20 text-cream/70 hover:text-cream hover:border-cream/50 transition-colors"
           >
             <IconDownload size={13} />

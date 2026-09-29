@@ -10,19 +10,19 @@ export const SKILLS: SkillCard[] = [
     id: 'languages',
     title: { fr: 'Langages', en: 'Languages' },
     icon: 'code',
-    items: ['TypeScript', 'JavaScript', 'Java', 'Kotlin', 'Python', 'SQL', 'CQL'],
+    items: ['TypeScript', 'JavaScript', 'Java', 'C#', 'Kotlin', 'Python', 'SQL', 'CQL'],
   },
   {
     id: 'frontend',
     title: { fr: 'Frontend', en: 'Frontend' },
     icon: 'monitor',
-    items: ['React', 'Angular', 'Jetpack Compose', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    items: ['React', 'Jetpack Compose', 'Tailwind CSS', 'Framer Motion', 'Vite', 'GC Design System'],
   },
   {
     id: 'backend',
     title: { fr: 'Backend & API', en: 'Backend & API' },
     icon: 'server',
-    items: ['Node.js', 'NestJS', 'FastAPI', 'Spring Boot', 'REST', 'WebSocket'],
+    items: ['Node.js', 'NestJS', 'FastAPI', 'Spring Boot', '.NET', 'Prisma', 'REST', 'WebSocket', 'Postman'],
   },
   {
     id: 'databases',
@@ -34,12 +34,18 @@ export const SKILLS: SkillCard[] = [
     id: 'cloud',
     title: { fr: 'Cloud & Infra', en: 'Cloud & Infra' },
     icon: 'cloud',
-    items: ['Azure', 'Railway', 'Cloudflare', 'Cloudinary'],
+    items: ['Azure', 'Azure CLI', 'Key Vault', 'Railway', 'Cloudflare', 'Cloudinary'],
   },
   {
     id: 'devops',
     title: { fr: 'DevOps & CI/CD', en: 'DevOps & CI/CD' },
     icon: 'git',
-    items: ['Docker', 'Jenkins', 'Git', 'CI/CD', 'Tests', 'OWASP'],
+    items: ['Docker', 'Jenkins', 'Git', 'GitHub Actions', 'CI/CD', 'PowerShell', 'Linux', 'Tests', 'Playwright', 'axe-core', 'OWASP'],
+  },
+  {
+    id: 'power-platform',
+    title: { fr: 'Power Platform', en: 'Power Platform' },
+    icon: 'layers',
+    items: ['Power Apps (code apps)', 'Microsoft Dataverse', 'Power Platform CLI'],
   },
 ]

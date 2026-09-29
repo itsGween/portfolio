@@ -135,7 +135,7 @@ export default function ChatPanel({
           </p>
           <div className="flex gap-3 flex-wrap justify-center">
             <a
-              href="mailto:kangahhansberryl7@outlook.com"
+              href="mailto:gween.hkangah@gmail.com"
               className="text-[12px] font-bold px-3 py-1.5 rounded-full"
               style={{ background: 'rgba(255,122,24,.15)', color: '#ff9d3d' }}
             >

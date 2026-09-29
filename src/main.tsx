@@ -20,7 +20,7 @@ console.log(
   '  ╚═════╝  ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝  ╚═══╝\n\n' +
   '  Hey toi 👋  Tu inspectes le code — j\'adore ça.\n' +
   '  Je suis Gween, développeuse full-stack à Ottawa.\n' +
-  '  kangahhansberryl7@outlook.com\n',
+  '  gween.hkangah@gmail.com\n',
   'color: #ff9d3d; font-family: monospace; font-size: 12px;'
 )
 

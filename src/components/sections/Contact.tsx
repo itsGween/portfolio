@@ -4,10 +4,10 @@ import RevealOnScroll from '@/components/ui/RevealOnScroll'
 import { IconMail, IconPhone, IconPin, IconClock } from '@/components/ui/Icons'
 
 const CONTACTS = [
-  { key: 'email',        icon: IconMail,   href: 'mailto:kangahhansberryl7@outlook.com', value: 'kangahhansberryl7@outlook.com' },
+  { key: 'email',        icon: IconMail,   href: 'mailto:gween.hkangah@gmail.com', value: 'gween.hkangah@gmail.com' },
   { key: 'phone',        icon: IconPhone,  href: 'tel:+18195928576',                     value: '819 592-8576' },
   { key: 'location',     icon: IconPin,    href: '#top',                                 valueKey: 'contact.values.location' },
-  { key: 'availability', icon: IconClock,  href: 'mailto:kangahhansberryl7@outlook.com', valueKey: 'contact.values.availability' },
+  { key: 'availability', icon: IconClock,  href: 'mailto:gween.hkangah@gmail.com', valueKey: 'contact.values.availability' },
 ] as const
 
 export default function Contact() {

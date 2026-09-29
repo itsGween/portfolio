@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
-const LEFT_LOGOS = ['react', 'typescript', 'tailwindcss', 'javascript', 'angular', 'vite']
+const LEFT_LOGOS = ['react', 'typescript', 'tailwindcss', 'javascript', 'java', 'vite']
 const RIGHT_LOGOS = ['nodedotjs', 'nestjs', 'python', 'docker', 'postgresql', 'azure']
 
 interface OrbitHand {

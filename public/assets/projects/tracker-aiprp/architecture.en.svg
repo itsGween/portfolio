@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 900" role="img" font-family="'Trebuchet MS', Verdana, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#5b4636"/>
+    </marker>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#8a8a8a"/>
+    </marker>
+    <style>
+      .t{font-size:17px;fill:#1c1109;text-anchor:middle}
+      .s{font-size:14px;fill:#5b4636;text-anchor:middle}
+      .h{font-size:15px;font-weight:bold;fill:#5b4636;text-anchor:middle;letter-spacing:.04em}
+      .done{fill:#fff3e6;stroke:#c2410c;stroke-width:2}
+      .plan{fill:#f4f4f4;stroke:#8a8a8a;stroke-width:1.6;stroke-dasharray:6 5}
+      .pt{font-size:17px;fill:#444;text-anchor:middle}
+      .ln{stroke:#5b4636;stroke-width:1.8;fill:none}
+      .lp{stroke:#8a8a8a;stroke-width:1.6;fill:none;stroke-dasharray:6 5}
+    </style>
+  </defs>
+
+  <!-- ALM -->
+  <rect class="plan" x="190" y="24" width="380" height="68" rx="10"/>
+  <text class="pt" x="380" y="53">GitHub Actions — ALM pipeline</text>
+  <text class="s" x="380" y="76">microsoft/powerplatform-actions</text>
+  <path class="lp" d="M380 92V142" marker-end="url(#ad)"/>
+  <text class="s" x="392" y="122" style="text-anchor:start">pac solution export / pack · pa app push</text>
+
+  <!-- Solution -->
+  <rect x="20" y="146" width="720" height="640" rx="16" fill="#fbf7f1" stroke="#c9b8a4" stroke-width="1.5"/>
+  <text class="h" x="380" y="176">POWER PLATFORM SOLUTION (PREFIX gk)</text>
+
+  <!-- Code app -->
+  <text class="h" x="190" y="218">APPLICATION</text>
+  <rect class="done" x="60" y="232" width="260" height="92" rx="10"/>
+  <text class="t" x="190" y="266">React code app</text>
+  <text class="s" x="190" y="290">4 screens · FR/EN · React Router</text>
+  <text class="s" x="190" y="310">GC Design System</text>
+
+  <!-- Flows -->
+  <text class="h" x="560" y="218">POWER AUTOMATE FLOWS</text>
+  <rect class="plan" x="420" y="232" width="280" height="50" rx="10"/>
+  <text class="pt" x="560" y="263">Request received</text>
+  <rect class="plan" x="420" y="292" width="280" height="50" rx="10"/>
+  <text class="pt" x="560" y="323">Deadline reminders (scheduled)</text>
+  <rect class="plan" x="420" y="352" width="280" height="50" rx="10"/>
+  <text class="pt" x="560" y="383">Extension approval</text>
+
+  <!-- arrows to Dataverse -->
+  <path class="ln" d="M190 324V470" marker-end="url(#a)"/>
+  <text class="s" x="202" y="400" style="text-anchor:start">read / write</text>
+  <path class="lp" d="M560 402V470" marker-end="url(#ad)"/>
+  <text class="s" x="572" y="442" style="text-anchor:start">read / write</text>
+
+  <!-- Dataverse -->
+  <rect x="50" y="476" width="660" height="150" rx="14" fill="#ffffff" stroke="#c2410c" stroke-width="1.5"/>
+  <text class="h" x="380" y="504">MICROSOFT DATAVERSE</text>
+  <g>
+    <path class="done" d="M110 530v60a90 14 0 0 0 180 0v-60"/>
+    <ellipse class="done" cx="200" cy="530" rx="90" ry="14"/>
+    <text class="t" x="200" y="578">gk_demande</text>
+  </g>
+  <g>
+    <path class="done" d="M470 530v60a90 14 0 0 0 180 0v-60"/>
+    <ellipse class="done" cx="560" cy="530" rx="90" ry="14"/>
+    <text class="t" x="560" y="578">gk_activite</text>
+  </g>
+  <path class="ln" d="M290 568H470" marker-end="url(#a)"/>
+  <text class="s" x="380" y="558">activity log (1-N)</text>
+
+  <!-- Roles -->
+  <text class="s" x="560" y="672" style="text-anchor:start">least privilege</text>
+  <rect class="plan" x="70" y="684" width="260" height="50" rx="10"/>
+  <text class="pt" x="200" y="715">Role: ATIP Agent</text>
+  <rect class="plan" x="420" y="684" width="260" height="50" rx="10"/>
+  <text class="pt" x="550" y="715">Role: ATIP Manager</text>
+  <path class="lp" d="M200 684V628" marker-end="url(#ad)"/>
+  <path class="lp" d="M550 684V652H230V628" marker-end="url(#ad)"/>
+
+  <!-- Legend -->
+  <rect class="done" x="170" y="820" width="34" height="22" rx="5"/>
+  <text class="s" x="214" y="836" style="text-anchor:start">Delivered (phases 0–2)</text>
+  <rect class="plan" x="420" y="820" width="34" height="22" rx="5"/>
+  <text class="s" x="464" y="836" style="text-anchor:start">Planned</text>
+</svg>

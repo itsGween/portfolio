@@ -31,7 +31,7 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 gap-[26px] max-md:grid-cols-1">
           {PROJECTS.map((p, i) => {
             const hasDetail = Boolean(
-              p.architectureDiagram || (p.screenshots && p.screenshots.length > 0) || (p.docsLinks && p.docsLinks.length > 0)
+              p.longDesc || p.architectureDiagram || (p.screenshots && p.screenshots.length > 0) || (p.docsLinks && p.docsLinks.length > 0)
             )
             const open = openIds.has(p.id)
             const detailId = `proj-detail-${p.id}`
@@ -65,6 +65,15 @@ export default function Projects() {
                     >
                       {p.kicker[lang]}
                     </span>
+                    {p.status && (
+                      <span
+                        className="inline-flex items-center gap-[7px] mt-[12px] text-[12px] font-semibold rounded-full px-[11px] py-[4px] border"
+                        style={{ color: accentColor, borderColor: 'rgba(255,187,99,.35)', background: 'rgba(255,187,99,.08)' }}
+                      >
+                        <span aria-hidden="true" className="w-[6px] h-[6px] rounded-full" style={{ background: accentColor }} />
+                        {p.status[lang]}
+                      </span>
+                    )}
                     <h3
                       className={`leading-[1.05] mt-[14px] mb-[12px] ${p.featured ? 'font-display font-normal' : 'font-semibold text-[30px]'}`}
                       style={{ fontSize: p.featured ? 'clamp(38px, 5vw, 60px)' : undefined }}
@@ -169,10 +178,20 @@ export default function Projects() {
                                 className="mt-6 pt-6 px-[3px] -mx-[3px]"
                                 style={{ borderTop: '1px solid rgba(255,255,255,.09)' }}
                               >
+                                {p.longDesc && (
+                                  <p className="text-[14px] leading-[1.6] mb-5" style={{ color: mutedColor }}>
+                                    {p.longDesc[lang]}
+                                  </p>
+                                )}
+
                                 {p.architectureDiagram && (
                                   <div className="rounded-[14px] p-4 mb-5" style={{ background: '#f6f0e7' }}>
                                     <img
-                                      src={p.architectureDiagram.src}
+                                      src={
+                                        typeof p.architectureDiagram.src === 'string'
+                                          ? p.architectureDiagram.src
+                                          : p.architectureDiagram.src[lang]
+                                      }
                                       alt={p.architectureDiagram.alt[lang] || t('projects.diagramAlt')}
                                       className="w-full h-auto"
                                       loading="lazy"
@@ -203,7 +222,7 @@ export default function Projects() {
 
                                 {p.role && (
                                   <p className="text-[13px] leading-[1.6] mb-3" style={{ color: mutedColor }}>
-                                    <strong style={{ color: accentColor }}>{t('projects.role')} : </strong>
+                                    <strong style={{ color: accentColor }}>{t('projects.role')}{lang === 'fr' ? ' : ' : ': '}</strong>
                                     {p.role[lang]}
                                   </p>
                                 )}

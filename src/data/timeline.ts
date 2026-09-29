@@ -12,8 +12,8 @@ export const TIMELINE: TimelineItem[] = [
     id: 'genixi',
     when: '02/2026 – 05/2026',
     role: {
-      fr: 'Développeuse Web Frontend — Recherche appliquée',
-      en: 'Frontend Web Developer — Applied research',
+      fr: 'Développeuse Web Full Stack — Recherche appliquée',
+      en: 'Full Stack Web Developer — Applied research',
     },
     org: 'Collège La Cité / GénieLab (InnovaCité) · Ottawa',
     desc: {
@@ -24,7 +24,7 @@ export const TIMELINE: TimelineItem[] = [
   },
   {
     id: 'receptionniste',
-    when: '09/2024 – présent',
+    when: '09/2024 – 09/2026',
     role: {
       fr: 'Réceptionniste / Service à la clientèle',
       en: 'Receptionist / Customer Service',
@@ -38,7 +38,7 @@ export const TIMELINE: TimelineItem[] = [
   },
   {
     id: 'diploma',
-    when: 'Juin 2026',
+    when: '06/2026',
     role: {
       fr: 'Diplôme avancé — Technologie du génie informatique',
       en: 'Advanced Diploma — Computer Engineering Technology',

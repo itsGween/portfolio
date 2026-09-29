@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { IconX } from '@/components/ui/Icons'
+import { getCvUrl } from '@/data/cv'
 
 interface Link { label: string; href: string }
 
@@ -60,11 +61,13 @@ export default function MobileMenu({ links, onClose, onToggleLang, lang }: Props
           {lang === 'fr' ? 'Switch to EN' : 'Passer en FR'}
         </button>
         <a
-          href="/CV_Gween_Kangah_FAC.docx"
+          href={getCvUrl(lang)}
           download
+          type="application/pdf"
+          hrefLang={lang.startsWith('en') ? 'en' : 'fr'}
           className="text-sm font-semibold text-cream border border-line px-4 py-2 rounded-full"
         >
-          Télécharger CV
+          {t('cv.download')}
         </a>
       </div>
     </motion.div>

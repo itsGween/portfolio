@@ -8,6 +8,12 @@ export interface ProjectImage {
   alt: LocalizedText
 }
 
+export interface ProjectDiagram {
+  /** Chaîne unique, ou une version par langue quand le diagramme contient du texte. */
+  src: string | LocalizedText
+  alt: LocalizedText
+}
+
 export interface DocLink {
   label: LocalizedText
   url: string
@@ -19,6 +25,7 @@ export interface Project {
   kicker: LocalizedText
   name: string
   desc: LocalizedText
+  longDesc?: LocalizedText
   stack: string[]
   featured: boolean
   github?: string
@@ -26,10 +33,11 @@ export interface Project {
   role?: LocalizedText
   year?: string
   license?: string
+  status?: LocalizedText
   highlights?: LocalizedText
   features?: { fr: string[]; en: string[] }
   screenshots?: ProjectImage[]
-  architectureDiagram?: ProjectImage
+  architectureDiagram?: ProjectDiagram
   docsLinks?: DocLink[]
 }
 
@@ -277,6 +285,104 @@ export const PROJECTS: Project[] = [
       {
         label: { fr: 'Politique de sécurité', en: 'Security policy' },
         url: 'https://github.com/itsGween/Auditeur_accessibilit-_WCAG/blob/main/SECURITY.md',
+      },
+    ],
+  },
+  {
+    id: 'tracker-aiprp',
+    no: '07',
+    kicker: {
+      fr: 'Projet personnel · Power Platform, secteur public fédéral',
+      en: 'Personal project · Power Platform, federal public sector',
+    },
+    name: 'Tracker AIPRP',
+    desc: {
+      fr: "Application interne fictive permettant à un bureau AIPRP fédéral de recevoir, suivre et traiter ses demandes d'accès à l'information, avec calcul automatique de l'échéance légale de 30 jours et tableau de bord des demandes en retard. Construite sur Microsoft Power Platform, bilingue et testée pour la conformité WCAG 2.1 AA.",
+      en: 'Fictional internal application letting a federal ATIP office receive, track and process access-to-information requests, with automatic calculation of the 30-day statutory deadline and a dashboard of overdue requests. Built on Microsoft Power Platform, bilingual and tested for WCAG 2.1 AA compliance.',
+    },
+    longDesc: {
+      fr: "Application interne fictive permettant à un bureau AIPRP fédéral de recevoir, suivre et traiter ses demandes d'accès à l'information, avec calcul automatique de l'échéance légale de 30 jours (prorogations incluses), tableau de bord des demandes en retard ou proches de l'échéance, et journal d'activité horodaté. Construite sur Microsoft Power Platform (Dataverse + Power Apps code app), bilingue FR/EN sans texte codé en dur, testée automatiquement pour la conformité WCAG 2.1 AA (Playwright + axe-core).",
+      en: 'Fictional internal application letting a federal ATIP office receive, track and process access-to-information requests, with automatic calculation of the 30-day statutory deadline (extensions included), a dashboard of overdue or near-deadline requests, and a timestamped activity log. Built on Microsoft Power Platform (Dataverse + a Power Apps code app), bilingual FR/EN with no hardcoded text, automatically tested for WCAG 2.1 AA compliance (Playwright + axe-core).',
+    },
+    stack: [
+      'Microsoft Dataverse',
+      'Power Apps (code app — React + TypeScript + Vite)',
+      'Power Automate',
+      'React Router',
+      'GC Design System',
+      'Playwright',
+      'axe-core',
+      'Power Platform CLI',
+      'GitHub Actions',
+      'MkDocs Material',
+    ],
+    featured: false,
+    github: 'https://github.com/itsGween/tracker-aiprp',
+    role: {
+      fr: "Conception et développement complet (schéma de données, application, tests, documentation d'architecture)",
+      en: 'End-to-end design and development (data schema, application, tests, architecture documentation)',
+    },
+    year: '2026',
+    status: {
+      fr: 'En développement — phases 0 à 2 livrées',
+      en: 'In development — phases 0–2 delivered',
+    },
+    highlights: {
+      fr: "Compréhension du cadre légal fédéral (Loi sur l'accès à l'information, délai de 30 jours), maîtrise de Power Platform au-delà du niveau canvas app (code app React, Dataverse, CLI, ALM), rigueur documentaire (ADR, étude de cas), accessibilité et bilinguisme comme réflexes.",
+      en: 'Understanding of the federal legal framework (Access to Information Act, 30-day deadline), Power Platform mastery beyond canvas apps (React code app, Dataverse, CLI, ALM), documentation rigor (ADRs, case study), accessibility and bilingualism as defaults, not afterthoughts.',
+    },
+    features: {
+      fr: [
+        'Schéma Dataverse complet (tables, colonnes, relations) + données de démo fictives',
+        'Code app React à 4 écrans : tableau de bord, liste, détail, nouvelle demande',
+        "Calcul de l'échéance légale de 30 jours, prorogations incluses",
+        "Tableau de bord des demandes en retard ou proches de l'échéance",
+        "Journal d'activité horodaté par demande",
+        'Interface bilingue FR/EN sans texte codé en dur',
+        'Tests automatisés WCAG 2.1 AA (Playwright + axe-core)',
+        "Documentation d'architecture : diagrammes Mermaid, ADR, modèle de données",
+      ],
+      en: [
+        'Complete Dataverse schema (tables, columns, relationships) + fictional demo data',
+        'React code app with 4 screens: dashboard, list, detail, new request',
+        '30-day statutory deadline calculation, extensions included',
+        'Dashboard of overdue and near-deadline requests',
+        'Timestamped activity log per request',
+        'Bilingual FR/EN interface with no hardcoded text',
+        'Automated WCAG 2.1 AA tests (Playwright + axe-core)',
+        'Architecture documentation: Mermaid diagrams, ADRs, data model',
+      ],
+    },
+    architectureDiagram: {
+      src: {
+        fr: '/assets/projects/tracker-aiprp/architecture.svg',
+        en: '/assets/projects/tracker-aiprp/architecture.en.svg',
+      },
+      alt: {
+        fr: "Architecture cible du Tracker AIPRP : solution Power Platform avec code app React, tables Dataverse, flux Power Automate, rôles de sécurité et pipeline GitHub Actions (flux, rôles et pipeline pas encore livrés)",
+        en: 'Tracker AIPRP (ATIP tracker) target architecture: Power Platform solution with a React code app, Dataverse tables, Power Automate flows, security roles and a GitHub Actions pipeline (flows, roles and pipeline not yet delivered)',
+      },
+    },
+    docsLinks: [
+      {
+        label: { fr: 'Architecture', en: 'Architecture' },
+        url: 'https://github.com/itsGween/tracker-aiprp/blob/main/docs/architecture.md',
+      },
+      {
+        label: { fr: 'Décisions d’architecture (ADR)', en: 'Architecture decision records (ADR)' },
+        url: 'https://github.com/itsGween/tracker-aiprp/tree/main/docs/adr',
+      },
+      {
+        label: { fr: 'Modèle de données', en: 'Data model' },
+        url: 'https://github.com/itsGween/tracker-aiprp/blob/main/docs/modele-donnees.md',
+      },
+      {
+        label: { fr: 'Accessibilité', en: 'Accessibility' },
+        url: 'https://github.com/itsGween/tracker-aiprp/blob/main/docs/accessibilite.md',
+      },
+      {
+        label: { fr: 'Étude de cas', en: 'Case study' },
+        url: 'https://github.com/itsGween/tracker-aiprp/blob/main/docs/portfolio-etude-de-cas.md',
       },
     ],
   },

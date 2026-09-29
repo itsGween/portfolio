@@ -16,21 +16,25 @@ export default function Skills() {
         <div className="grid md:grid-cols-3 gap-[22px] max-md:grid-cols-1">
           {SKILLS.map((skill, i) => {
             const Icon = getIconByName(skill.icon)
+            // Une carte seule sur la dernière rangée s'étale sur les 3 colonnes, en bandeau horizontal.
+            const wide = i === SKILLS.length - 1 && SKILLS.length % 3 === 1
             return (
-              <RevealOnScroll key={skill.id} delay={i * 0.07}>
+              <RevealOnScroll key={skill.id} delay={i * 0.07} className={wide ? 'h-full md:col-span-3' : 'h-full'}>
                 <motion.div
-                  className="rounded-[18px] p-7 border border-line"
+                  className={`h-full rounded-[18px] p-7 border border-line ${wide ? 'md:flex md:items-center md:gap-8' : ''}`}
                   style={{ background: '#211308' }}
                   whileHover={{ y: -5, borderColor: 'rgba(255,122,24,.5)' }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div
-                    className="w-12 h-12 rounded-[12px] grid place-items-center mb-[18px] text-o2"
-                    style={{ background: 'rgba(255,122,24,.12)' }}
-                  >
-                    <Icon />
+                  <div className={wide ? 'md:flex md:items-center md:gap-4 md:shrink-0 md:w-[260px]' : ''}>
+                    <div
+                      className={`w-12 h-12 rounded-[12px] grid place-items-center text-o2 shrink-0 ${wide ? 'mb-[18px] md:mb-0' : 'mb-[18px]'}`}
+                      style={{ background: 'rgba(255,122,24,.12)' }}
+                    >
+                      <Icon />
+                    </div>
+                    <h4 className={`text-[18px] font-semibold ${wide ? 'mb-[14px] md:mb-0' : 'mb-[14px]'}`}>{skill.title[lang]}</h4>
                   </div>
-                  <h4 className="text-[18px] font-semibold mb-[14px]">{skill.title[lang]}</h4>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item) => (
                       <span

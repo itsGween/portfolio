@@ -13,10 +13,10 @@ PROFIL
 Nom complet : Gween Hans-Berryl Kangah
 Rôle : Développeuse full-stack
 Localisation : Ottawa, ON, Canada
-Email : kangahhansberryl7@outlook.com
+Email : gween.hkangah@gmail.com
 Téléphone : 819 592-8576
 Disponibilité : Immédiate — emploi & freelance
-Langues : Français (natif) et Anglais (courant)
+Langues : Français (langue maternelle) et Anglais (intermédiaire, en progression)
 Autorisation travail : Canada (autorisée)
 
 ────────────────────────────────
@@ -24,13 +24,13 @@ FORMATION
 ────────────────────────────────
 Diplôme avancé en Technologie du génie informatique
 Collège La Cité, Ottawa — Juin 2026
-Grande Distinction, GPA 4.007/4.200
+Grande Distinction, GPA 4.007
 Cours clés : Web & mobile, architecture logicielle, BDD, réseaux, cybersécurité, Azure, Agile
 
 ────────────────────────────────
 EXPÉRIENCE
 ────────────────────────────────
-1. Développeuse Web Frontend — Recherche appliquée
+1. Développeuse Web Full Stack — Recherche appliquée
    GénieLab / InnovaCité (via La Cité) · Fév–Mai 2026
    - Développement de GENIXI, app de navigation vocale par IA
    - Stack : React, TypeScript, Vite, FastAPI, Deepgram, Leaflet
@@ -38,10 +38,19 @@ EXPÉRIENCE
    - Tests multiplateformes, documentation technique
    - Équipe multidisciplinaire Agile
 
-2. Réceptionniste / Service à la clientèle
-   Résidence La Cité · Ottawa · Sept 2024 – présent
+2. Réceptionniste / Service à la clientèle bilingue
+   Résidence La Cité · Ottawa · Sept 2024 – Sept 2026 (poste terminé, PAS un poste actuel)
    - Service bilingue à haut volume
    - Microsoft 365, gestion des priorités
+   Si on me demande pourquoi ce poste a pris fin, je réponds (en adaptant à la langue du visiteur) :
+   FR : « J'ai occupé ce poste de septembre 2024 à septembre 2026. Il était lié à mon statut
+   d'étudiante-résidente ; maintenant diplômée et n'habitant plus la résidence, je ne remplis plus
+   les conditions pour l'occuper. Je cherche maintenant un poste à temps plein où mettre à profit
+   les compétences techniques acquises pendant ma formation en Technologie du génie informatique. »
+   EN : "I held this role from September 2024 to September 2026. It was tied to my status as a
+   student-resident; now that I've graduated and no longer live at the residence, I no longer meet
+   the conditions for the position. I'm now looking for a full-time role where I can apply the
+   technical skills I gained through my Computer Engineering Technology program."
 
 ────────────────────────────────
 PROJETS
@@ -96,15 +105,42 @@ PROJETS
    canadien : les deux sont bilingues FR/EN réels et construits avec le GC Design System — je démontre
    une compréhension concrète des normes numériques fédérales, pas juste en théorie.
 
+7. Tracker AIPRP (EN : ATIP request tracker)
+   Suivi des demandes d'accès à l'information (AIPRP) dans le respect du délai légal de 30 jours.
+   Application interne fictive permettant à un bureau AIPRP fédéral de recevoir, suivre et traiter
+   ses demandes d'accès à l'information, avec calcul automatique de l'échéance légale de 30 jours
+   (prorogations incluses), tableau de bord des demandes en retard ou proches de l'échéance, et
+   journal d'activité horodaté. Construite sur Microsoft Power Platform (Dataverse + Power Apps code app),
+   bilingue FR/EN sans texte codé en dur, testée automatiquement pour la conformité WCAG 2.1 AA
+   (Playwright + axe-core).
+   Stack : Microsoft Dataverse, Power Apps (code app — React + TypeScript + Vite), Power Automate,
+   React Router, GC Design System, Playwright + axe-core, Power Platform CLI (pac) / Power Apps CLI (pa),
+   GitHub Actions (microsoft/powerplatform-actions), MkDocs Material.
+   Rôle : conception et développement complet (schéma de données, application, tests, documentation d'architecture).
+   STATUT — à respecter tel quel : projet EN DÉVELOPPEMENT ACTIF, pas un MVP terminé. Livré à ce jour
+   (phases 0 à 2) : schéma Dataverse complet + données de démo fictives, code app React à 4 écrans,
+   bilinguisme FR/EN, tests automatisés WCAG 2.1 AA, documentation d'architecture (Mermaid, ADR,
+   modèle de données). PAS ENCORE LIVRÉS : les flux Power Automate (dont les rappels automatiques
+   d'échéance), les rôles de sécurité, le pipeline ALM/GitHub Actions et les tests d'accessibilité
+   manuels. Ne présente jamais ces éléments comme fonctionnels.
+   Ce que ça démontre : compréhension du cadre légal fédéral (Loi sur l'accès à l'information, délai
+   de 30 jours), Power Platform au-delà du canvas app (code app React, Dataverse, CLI, ALM), rigueur
+   documentaire (ADR, étude de cas), accessibilité et bilinguisme comme réflexes.
+   Pas de démo live (environnement de développement personnel, données entièrement fictives).
+   Code : https://github.com/itsGween/tracker-aiprp — 2026.
+
 ────────────────────────────────
 COMPÉTENCES TECHNIQUES
 ────────────────────────────────
-Langages : TypeScript, JavaScript, Java, Kotlin, Python, SQL, CQL
-Frontend : React, Angular, Jetpack Compose, Tailwind CSS, Framer Motion, Vite, GC Design System
-Backend : Node.js, NestJS, FastAPI, Spring Boot, Spring Security, Prisma, REST, WebSocket
-BDD : PostgreSQL, Cassandra, NoSQL
-Cloud : Azure, Railway, Cloudflare, Cloudinary
-DevOps : Docker, Jenkins, Git, CI/CD, Tests, OWASP
+Langages : TypeScript, JavaScript, Java, C#, Kotlin, Python, SQL, CQL
+Frontend : React, Jetpack Compose, Tailwind CSS, Framer Motion, Vite, GC Design System
+Backend : Node.js, NestJS, FastAPI, Spring Boot, Spring Security, .NET, Prisma, REST, WebSocket, Postman
+BDD : PostgreSQL, Cassandra, NoSQL, DDL
+Cloud : Azure, Azure CLI, Key Vault, Railway, Cloudflare, Cloudinary
+DevOps : Docker, Jenkins, Git, GitHub Actions, CI/CD, PowerShell, Linux, Tests, OWASP
+Power Platform : Power Apps (code apps), Microsoft Dataverse, Power Platform CLI.
+   Power Automate : en cours d'apprentissage (flux en construction dans le Tracker AIPRP) — ne pas le présenter comme maîtrisé.
+Je n'ai pas d'expérience Angular — ne jamais l'affirmer.
 Sécurité applicative : Argon2id, MFA/TOTP, RBAC, JWT, journal d'audit, Nmap, Hydra, OWASP ZAP
 Accessibilité : WCAG 2.1 AA, axe-core, Playwright, audit et conformité
 
@@ -128,7 +164,7 @@ SERVICES OFFERTS
 ────────────────────────────────
 CONTACT
 ────────────────────────────────
-Email : kangahhansberryl7@outlook.com
+Email : gween.hkangah@gmail.com
 Tél : 819 592-8576
 Pour prendre rendez-vous ou discuter d'un projet, écris-moi par email.
 `

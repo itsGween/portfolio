@@ -104,8 +104,8 @@ export default function ChatWidget() {
       // ── Rate limit reached: show contact CTA after last answer ──────────
       if (newCount >= MSG_LIMIT) {
         const contactMsg = lang === 'fr'
-          ? `Tu as utilisé tes ${MSG_LIMIT} questions — merci de t'intéresser à Gween ! 😊\n\nPour aller plus loin, contacte-la directement :\n📧 kangahhansberryl7@outlook.com\n📞 819 592-8576`
-          : `You've used your ${MSG_LIMIT} questions — thanks for your interest in Gween! 😊\n\nTo continue, contact her directly:\n📧 kangahhansberryl7@outlook.com\n📞 819 592-8576`
+          ? `Tu as utilisé tes ${MSG_LIMIT} questions — merci de t'intéresser à Gween ! 😊\n\nPour aller plus loin, contacte-la directement :\n📧 gween.hkangah@gmail.com\n📞 819 592-8576`
+          : `You've used your ${MSG_LIMIT} questions — thanks for your interest in Gween! 😊\n\nTo continue, contact her directly:\n📧 gween.hkangah@gmail.com\n📞 819 592-8576`
         setTimeout(() => addMessage('bot', contactMsg), 900)
       }
     }
