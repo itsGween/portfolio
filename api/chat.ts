@@ -42,6 +42,11 @@ export async function POST(request: Request): Promise<Response> {
     return json(400, { error: 'invalid_messages' })
   }
 
+  // llama-3.3-70b-versatile est réservé aux comptes Enterprise chez Groq (404 model_not_found
+  // avec une clé standard) : on utilise gpt-oss-120b, surchargeable par GROQ_MODEL.
+  const model = process.env.GROQ_MODEL ?? 'openai/gpt-oss-120b'
+  const isReasoningModel = model.startsWith('openai/gpt-oss')
+
   const upstream = await fetch(GROQ_URL, {
     method: 'POST',
     headers: {
@@ -49,11 +54,13 @@ export async function POST(request: Request): Promise<Response> {
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: process.env.GROQ_MODEL ?? 'llama-3.3-70b-versatile',
+      model,
       messages: [{ role: 'system', content: SYSTEM_PROMPT(lang) }, ...messages],
       stream: true,
-      max_tokens: 512,
+      // Les modèles de raisonnement consomment des jetons avant de répondre : marge plus large.
+      max_tokens: isReasoningModel ? 1024 : 512,
       temperature: 0.5,
+      ...(isReasoningModel ? { reasoning_effort: 'low' } : {}),
     }),
   })
 
