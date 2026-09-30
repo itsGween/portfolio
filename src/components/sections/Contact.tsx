@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
+import { CARD_CELL } from '@/components/ui/card'
 import { IconMail, IconPhone, IconPin, IconClock } from '@/components/ui/Icons'
 
 const CONTACTS = [
@@ -51,7 +52,7 @@ export default function Contact() {
             const value = 'valueKey' in c ? t(c.valueKey) : c.value
             const label = t(`contact.labels.${c.key}`)
             return (
-              <RevealOnScroll key={c.key} delay={i * 0.07}>
+              <RevealOnScroll key={c.key} delay={i * 0.07} className={CARD_CELL}>
                 <motion.a
                   href={c.href}
                   className="flex items-center gap-4 rounded-[14px] border h-full min-h-[76px]"

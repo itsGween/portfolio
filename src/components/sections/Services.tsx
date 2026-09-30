@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import SectionHeading from '@/components/ui/SectionHeading'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
+import { CARD_BG, CARD_CELL, CARD_PADDING } from '@/components/ui/card'
 import { getIconByName } from '@/components/ui/Icons'
 import { SERVICES } from '@/data/services'
 
@@ -20,11 +21,11 @@ export default function Services() {
           {SERVICES.map((s, i) => {
             const Icon = getIconByName(s.icon)
             return (
-              <RevealOnScroll key={s.id} delay={i * 0.08}>
+              <RevealOnScroll key={s.id} delay={i * 0.08} className={CARD_CELL}>
                 <motion.div
-                  className="flex gap-[22px] p-10 max-md:p-6"
+                  className={`h-full flex gap-[22px] ${CARD_PADDING}`}
                   style={{ background: '#1c1109' }}
-                  whileHover={{ background: '#211308' }}
+                  whileHover={{ background: CARD_BG }}
                   transition={{ duration: 0.3 }}
                 >
                   <div

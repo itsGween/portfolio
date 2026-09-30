@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
+import { CARD_BG, CARD_CELL, CARD_GRID_GAP, CARD_HOVER, CARD_PADDING, CARD_SHAPE } from '@/components/ui/card'
 import { IconArrow } from '@/components/ui/Icons'
 import { POSTS } from '@/data/posts'
 
@@ -33,24 +34,17 @@ export default function Blog() {
         </RevealOnScroll>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6 max-md:grid-cols-1">
+        <div className={`grid md:grid-cols-3 ${CARD_GRID_GAP} max-md:grid-cols-1`}>
           {POSTS.map((post, i) => (
-            <RevealOnScroll key={post.id} delay={i * 0.09}>
+            <RevealOnScroll key={post.id} delay={i * 0.09} className={CARD_CELL}>
               <motion.a
                 href={`/blog/${post.id}`}
-                className="rounded-[20px] overflow-hidden flex flex-col group"
+                className={`${CARD_SHAPE} overflow-hidden flex flex-col group`}
                 style={{
-                  background: '#211308',
-                  border: '1px solid rgba(255,255,255,.06)',
+                  background: CARD_BG,
                   boxShadow: '0 4px 24px rgba(0,0,0,.25)',
-                  display: 'flex',
-                  flexDirection: 'column',
                 }}
-                whileHover={{
-                  y: -6,
-                  borderColor: 'rgba(255,122,24,.3)',
-                  boxShadow: '0 20px 56px rgba(0,0,0,.5)',
-                }}
+                whileHover={CARD_HOVER}
                 transition={{ duration: 0.3, ease: EASE }}
               >
                 {/* Color band */}
@@ -62,7 +56,7 @@ export default function Blog() {
                   }}
                 />
 
-                <div style={{ padding: '20px 24px 26px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <div className={`${CARD_PADDING} flex flex-col flex-1`}>
                   {/* Category + date */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
                     <span style={{

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import SectionHeading from '@/components/ui/SectionHeading'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
+import { CARD_BG, CARD_CELL, CARD_GRID_GAP, CARD_HOVER, CARD_PADDING, CARD_SHAPE } from '@/components/ui/card'
 import { IconArrow, IconGit, IconChevronDown, IconExternalLink } from '@/components/ui/Icons'
 import { PROJECTS } from '@/data/projects'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -48,7 +49,7 @@ export default function Projects() {
     <section className="sec" id="projets">
       <div className="wrap">
         <SectionHeading eyebrowKey="projects.eyebrow" titleKey="projects.title" />
-        <div className="grid md:grid-cols-2 gap-[26px] max-md:grid-cols-1">
+        <div className={`grid md:grid-cols-2 ${CARD_GRID_GAP} max-md:grid-cols-1`}>
           {PROJECTS.map((p, i) => {
             const hasDetail = Boolean(
               p.longDesc || p.architectureDiagram || (p.screenshots && p.screenshots.length > 0) || (p.docsLinks && p.docsLinks.length > 0)
@@ -60,15 +61,15 @@ export default function Projects() {
             const accentColor = p.featured ? '#ffe0bd' : '#ffbb63'
 
             return (
-              <RevealOnScroll key={p.id} delay={i * 0.08} className={`h-full ${p.featured ? 'md:col-span-2' : ''} ${neighbourOpen ? 'md:self-start' : ''}`}>
+              <RevealOnScroll key={p.id} delay={i * 0.08} className={`${CARD_CELL} ${p.featured ? 'md:col-span-2' : ''} ${neighbourOpen ? 'md:self-start' : ''}`}>
                 <motion.div
-                  className="relative h-full rounded-[22px] overflow-hidden p-[34px] min-h-[320px] flex flex-col justify-between border border-line"
+                  className={`relative ${CARD_SHAPE} ${CARD_PADDING} overflow-hidden min-h-[320px] flex flex-col justify-between`}
                   style={{
                     background: p.featured
                       ? 'linear-gradient(120deg, #3a1502, #c2410c 90%, #ff7d1c)'
-                      : 'linear-gradient(160deg, #241608, #160c05)',
+                      : CARD_BG,
                   }}
-                  whileHover={reducedMotion ? undefined : { y: -6, boxShadow: '0 30px 60px rgba(0,0,0,.4)' }}
+                  whileHover={reducedMotion ? undefined : CARD_HOVER}
                   transition={{ duration: 0.35 }}
                 >
                   {/* Number */}
