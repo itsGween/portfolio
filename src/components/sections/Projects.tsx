@@ -9,6 +9,26 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 const EASING = [0.2, 0.7, 0.2, 1] as const
 
+// Rangée de chaque carte dans la grille à 2 colonnes (une carte vedette occupe une rangée entière).
+// Sert à ne pas étirer une carte quand sa voisine de rangée déplie son détail.
+const ROW_OF: Record<string, number> = (() => {
+  const rows: Record<string, number> = {}
+  let row = 0
+  let col = 0
+  for (const p of PROJECTS) {
+    if (p.featured) {
+      if (col > 0) row++
+      rows[p.id] = row++
+      col = 0
+    } else {
+      rows[p.id] = row
+      col++
+      if (col === 2) { row++; col = 0 }
+    }
+  }
+  return rows
+})()
+
 export default function Projects() {
   const { t, i18n } = useTranslation()
   const lang = i18n.language as 'fr' | 'en'
@@ -34,14 +54,15 @@ export default function Projects() {
               p.longDesc || p.architectureDiagram || (p.screenshots && p.screenshots.length > 0) || (p.docsLinks && p.docsLinks.length > 0)
             )
             const open = openIds.has(p.id)
+            const neighbourOpen = !open && [...openIds].some((id) => ROW_OF[id] === ROW_OF[p.id])
             const detailId = `proj-detail-${p.id}`
             const mutedColor = p.featured ? 'rgba(255,255,255,.92)' : '#cbb8a6'
             const accentColor = p.featured ? '#ffe0bd' : '#ffbb63'
 
             return (
-              <RevealOnScroll key={p.id} delay={i * 0.08} className={p.featured ? 'md:col-span-2' : ''}>
+              <RevealOnScroll key={p.id} delay={i * 0.08} className={`h-full ${p.featured ? 'md:col-span-2' : ''} ${neighbourOpen ? 'md:self-start' : ''}`}>
                 <motion.div
-                  className="relative rounded-[22px] overflow-hidden p-[34px] min-h-[320px] flex flex-col justify-between border border-line"
+                  className="relative h-full rounded-[22px] overflow-hidden p-[34px] min-h-[320px] flex flex-col justify-between border border-line"
                   style={{
                     background: p.featured
                       ? 'linear-gradient(120deg, #3a1502, #c2410c 90%, #ff7d1c)'

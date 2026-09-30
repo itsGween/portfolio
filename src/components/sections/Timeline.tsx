@@ -41,6 +41,16 @@ export default function Timeline() {
               <p className="text-[15px] leading-[1.65]" style={{ color: '#cbb8a6' }}>
                 {e.desc[lang]}
               </p>
+              {e.tasks && e.tasks[lang].length > 0 && (
+                <ul className="mt-3 grid gap-[6px] text-[14px] leading-[1.55]" style={{ color: '#cbb8a6' }}>
+                  {e.tasks[lang].map((task) => (
+                    <li key={task} className="flex gap-[10px]">
+                      <span aria-hidden="true" className="text-o2">·</span>
+                      {task}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </RevealOnScroll>
           ))}
         </div>

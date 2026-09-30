@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'
 import ChatButton from './ChatButton'
 import ChatTeaser from './ChatTeaser'
 import ChatPanel from './ChatPanel'
-import { GroqProvider } from '@/lib/groq-provider'
+import { ChatApiProvider } from '@/lib/chat-api-provider'
 import { OllamaProvider } from '@/lib/ollama-provider'
 import { getFallbackResponse } from '@/lib/fallback-responses'
 import { SYSTEM_PROMPT } from '@/data/knowledge-base'
-import type { ChatMessage } from '@/lib/llm-provider'
+import type { ChatMessage, LLMProvider } from '@/lib/llm-provider'
 
 export interface Message {
   id: string
@@ -22,9 +22,9 @@ const MAX_INPUT_LEN = 600
 // Keep only the last N exchanges in the LLM context (prevents context overflow)
 const MAX_HISTORY = 14
 
-// Groq (prod) → Ollama (local) → keyword fallback
-const groq = new GroqProvider()
-const provider = groq.available ? groq : new OllamaProvider()
+// /api/chat (Groq côté serveur) → mots-clés en repli.
+// En local sans `vercel dev`, VITE_CHAT_PROVIDER=ollama utilise Ollama à la place.
+const useOllama = import.meta.env.VITE_CHAT_PROVIDER === 'ollama'
 
 export default function ChatWidget() {
   const { t, i18n } = useTranslation()
@@ -39,6 +39,11 @@ export default function ChatWidget() {
     { id: '0', role: 'bot', text: t('chat.welcome') },
   ])
   const historyRef = useRef<ChatMessage[]>([])
+  const langRef = useRef(lang)
+  langRef.current = lang
+  const [provider] = useState<LLMProvider>(() =>
+    useOllama ? new OllamaProvider() : new ChatApiProvider(() => langRef.current),
+  )
   const teaserTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -71,8 +76,10 @@ export default function ChatWidget() {
       historyRef.current = historyRef.current.slice(-MAX_HISTORY)
     }
 
-    const systemPrompt: ChatMessage = { role: 'system', content: SYSTEM_PROMPT(lang) }
-    const allMessages: ChatMessage[] = [systemPrompt, ...historyRef.current]
+    // Ollama (local) reçoit le system prompt ici ; /api/chat l'ajoute côté serveur.
+    const allMessages: ChatMessage[] = useOllama
+      ? [{ role: 'system', content: SYSTEM_PROMPT(lang) }, ...historyRef.current]
+      : [...historyRef.current]
 
     let fullResponse = ''
 
@@ -94,7 +101,8 @@ export default function ChatWidget() {
         }
         return prev
       })
-    } catch {
+    } catch (err) {
+      console.warn('[Gigi] LLM indisponible, réponse de repli utilisée :', err)
       fullResponse = getFallbackResponse(userText, lang)
       addMessage('bot', fullResponse)
     } finally {
@@ -109,7 +117,7 @@ export default function ChatWidget() {
         setTimeout(() => addMessage('bot', contactMsg), 900)
       }
     }
-  }, [userMsgCount, addMessage, lang])
+  }, [userMsgCount, addMessage, lang, provider])
 
   const quickReplies = t('chat.quick', { returnObjects: true }) as string[]
 
