@@ -58,9 +58,18 @@ export async function POST(request: Request): Promise<Response> {
   })
 
   if (!upstream.ok || !upstream.body) {
-    // Journalisé côté serveur (logs Vercel) — le détail n'est pas renvoyé au client.
-    console.error(`[api/chat] Groq ${upstream.status}: ${(await upstream.text()).slice(0, 300)}`)
-    return json(502, { error: 'llm_upstream_error' })
+    // Message complet journalisé côté serveur (logs Vercel) ; le client ne reçoit que
+    // le statut et le code d'erreur Groq (ex. invalid_api_key), utiles au diagnostic.
+    const detail = await upstream.text()
+    console.error(`[api/chat] Groq ${upstream.status}: ${detail.slice(0, 300)}`)
+    let code = 'unknown'
+    try {
+      const parsed = JSON.parse(detail) as { error?: { code?: string; type?: string } }
+      code = parsed.error?.code ?? parsed.error?.type ?? code
+    } catch {
+      // corps non JSON
+    }
+    return json(502, { error: 'llm_upstream_error', upstream_status: String(upstream.status), upstream_code: code })
   }
 
   return new Response(upstream.body, {
