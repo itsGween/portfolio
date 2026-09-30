@@ -1,4 +1,4 @@
-import { SYSTEM_PROMPT } from '../src/data/knowledge-base'
+import { SYSTEM_PROMPT } from '../src/data/knowledge-base.js'
 
 // Proxy serveur vers Groq : la clé reste dans les variables d'environnement Vercel
 // (GROQ_API_KEY, sans préfixe VITE_) et n'est jamais envoyée au navigateur.
