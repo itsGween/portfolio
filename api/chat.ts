@@ -59,7 +59,7 @@ export async function POST(request: Request): Promise<Response> {
       stream: true,
       // Les modèles de raisonnement consomment des jetons avant de répondre : marge plus large.
       max_tokens: isReasoningModel ? 1024 : 512,
-      temperature: 0.2,
+      temperature: 0,
       ...(isReasoningModel ? { reasoning_effort: 'low' } : {}),
     }),
   })
