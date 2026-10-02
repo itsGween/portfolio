@@ -89,7 +89,7 @@ export default function Nav() {
             download
             type="application/pdf"
             hrefLang={i18n.language.startsWith('en') ? 'en' : 'fr'}
-            aria-label={`${t('cv.download')} (PDF)`}
+            aria-label={t('cv.download')}
             className="flex items-center gap-2 text-[12px] font-bold tracking-[0.02em] px-3 py-1.5 rounded-full border border-cream/20 text-cream/70 hover:text-cream hover:border-cream/50 transition-colors"
           >
             <IconDownload size={13} />
