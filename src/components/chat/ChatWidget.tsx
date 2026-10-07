@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import ChatButton from './ChatButton'
 import ChatTeaser from './ChatTeaser'
 import ChatPanel from './ChatPanel'
-import { ChatApiProvider } from '@/lib/chat-api-provider'
+import { ChatApiProvider, RateLimitError } from '@/lib/chat-api-provider'
 import { OllamaProvider } from '@/lib/ollama-provider'
 import { getFallbackResponse } from '@/lib/fallback-responses'
 import { SYSTEM_PROMPT } from '@/data/knowledge-base'
@@ -82,6 +82,7 @@ export default function ChatWidget() {
       : [...historyRef.current]
 
     let fullResponse = ''
+    let serverRateLimited = false
 
     try {
       await provider.chat(allMessages, (chunk) => {
@@ -102,22 +103,35 @@ export default function ChatWidget() {
         return prev
       })
     } catch (err) {
-      console.warn('[Gigi] LLM indisponible, réponse de repli utilisée :', err)
-      fullResponse = getFallbackResponse(userText, lang)
-      addMessage('bot', fullResponse)
+      if (err instanceof RateLimitError) {
+        // 429 de notre serveur : message poli, pas de repli par mots-clés.
+        serverRateLimited = true
+        addMessage('bot', t('chat.rateLimited', { seconds: err.retryAfter }))
+      } else {
+        console.warn('[Gigi] LLM indisponible, réponse de repli utilisée :', err)
+        fullResponse = getFallbackResponse(userText, lang)
+        addMessage('bot', fullResponse)
+      }
     } finally {
       setTyping(false)
-      historyRef.current.push({ role: 'assistant', content: fullResponse })
 
-      // ── Rate limit reached: show contact CTA after last answer ──────────
-      if (newCount >= MSG_LIMIT) {
-        const contactMsg = lang === 'fr'
-          ? `Tu as utilisé tes ${MSG_LIMIT} questions — merci de t'intéresser à Gween ! 😊\n\nPour aller plus loin, contacte-la directement :\n📧 gween.hkangah@gmail.com\n📞 819 592-8576`
-          : `You've used your ${MSG_LIMIT} questions — thanks for your interest in Gween! 😊\n\nTo continue, contact her directly:\n📧 gween.hkangah@gmail.com\n📞 819 592-8576`
-        setTimeout(() => addMessage('bot', contactMsg), 900)
+      if (serverRateLimited) {
+        // Question non traitée : elle sort de l'historique et ne compte pas dans le quota.
+        historyRef.current.pop()
+        setUserMsgCount((c) => c - 1)
+      } else {
+        historyRef.current.push({ role: 'assistant', content: fullResponse })
+
+        // ── Rate limit reached: show contact CTA after last answer ──────────
+        if (newCount >= MSG_LIMIT) {
+          const contactMsg = lang === 'fr'
+            ? `Tu as utilisé tes ${MSG_LIMIT} questions — merci de t'intéresser à Gween ! 😊\n\nPour aller plus loin, contacte-la directement :\n📧 gween.hkangah@gmail.com\n📞 819 592-8576`
+            : `You've used your ${MSG_LIMIT} questions — thanks for your interest in Gween! 😊\n\nTo continue, contact her directly:\n📧 gween.hkangah@gmail.com\n📞 819 592-8576`
+          setTimeout(() => addMessage('bot', contactMsg), 900)
+        }
       }
     }
-  }, [userMsgCount, addMessage, lang, provider])
+  }, [userMsgCount, addMessage, lang, provider, t])
 
   const quickReplies = t('chat.quick', { returnObjects: true }) as string[]
 

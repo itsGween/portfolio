@@ -1,4 +1,5 @@
 import { SYSTEM_PROMPT } from '../src/data/knowledge-base.js'
+import { rateLimitResponse } from './_rate-limit.js'
 
 // Proxy serveur vers Groq : la clé reste dans les variables d'environnement Vercel
 // (GROQ_API_KEY, sans préfixe VITE_) et n'est jamais envoyée au navigateur.
@@ -26,6 +27,10 @@ function json(status: number, body: Record<string, string>): Response {
 }
 
 export async function POST(request: Request): Promise<Response> {
+  // 10 req/min par IP + 60 req/min au total, vérifié avant tout appel à Groq.
+  const limited = rateLimitResponse(request)
+  if (limited) return limited
+
   const apiKey = process.env.GROQ_API_KEY
   if (!apiKey) return json(503, { error: 'llm_not_configured' })
 

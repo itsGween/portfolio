@@ -91,7 +91,8 @@
     "placeholder": "Écris ton message…",
     "teaser": "Une question ? Discute avec Gigi",
     "quick": ["Mon parcours", "Mes projets", "Ma stack", "Disponibilité"],
-    "welcome": "Bonjour ! Je suis Gigi, l'assistante de Gween 👋 Je peux te parler de son parcours, ses projets, ses compétences ou sa disponibilité. Comment puis-je t'aider ?"
+    "welcome": "Bonjour ! Je suis Gigi, l'assistante de Gween 👋 Je peux te parler de son parcours, ses projets, ses compétences ou sa disponibilité. Comment puis-je t'aider ?",
+    "rateLimited": "Trop de questions d'un coup 😊 Réessaie dans {{seconds}} s."
   },
   "cv": {
     "download": "Télécharger le CV (PDF)",

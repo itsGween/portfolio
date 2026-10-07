@@ -1,5 +1,16 @@
 import type { ChatMessage, LLMProvider } from './llm-provider'
 
+// Levée quand /api/chat répond 429 (limite de débit du serveur, pas celle de Groq).
+export class RateLimitError extends Error {
+  readonly retryAfter: number
+
+  constructor(retryAfter: number) {
+    super(`/api/chat 429: retry after ${retryAfter}s`)
+    this.name = 'RateLimitError'
+    this.retryAfter = retryAfter
+  }
+}
+
 // Appelle la fonction serveur /api/chat (api/chat.ts), qui détient la clé Groq.
 // Le system prompt est ajouté côté serveur : on n'envoie que l'historique.
 export class ChatApiProvider implements LLMProvider {
@@ -18,6 +29,11 @@ export class ChatApiProvider implements LLMProvider {
         messages: messages.filter((m) => m.role !== 'system'),
       }),
     })
+
+    if (res.status === 429) {
+      const retryAfter = Number(res.headers.get('Retry-After'))
+      throw new RateLimitError(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter : 60)
+    }
 
     if (!res.ok || !res.body) {
       throw new Error(`/api/chat ${res.status}: ${await res.text()}`)

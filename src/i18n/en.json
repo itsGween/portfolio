@@ -91,7 +91,8 @@
     "placeholder": "Write your message…",
     "teaser": "A question? Chat with Gigi",
     "quick": ["My background", "My projects", "My stack", "Availability"],
-    "welcome": "Hello! I'm Gigi, Gween's assistant 👋 I can tell you about her background, projects, skills or availability. How can I help?"
+    "welcome": "Hello! I'm Gigi, Gween's assistant 👋 I can tell you about her background, projects, skills or availability. How can I help?",
+    "rateLimited": "Too many questions at once 😊 Try again in {{seconds}} s."
   },
   "cv": {
     "download": "Download CV (PDF)",
