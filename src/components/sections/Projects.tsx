@@ -165,20 +165,25 @@ export default function Projects() {
                       </div>
                     )}
 
-                    <motion.span
-                      className="inline-flex items-center gap-2 font-bold text-[14px] text-white mt-6 cursor-default"
-                      whileHover="hover"
-                    >
-                      {t('projects.cta')}
-                      <motion.span
-                        className="w-[30px] h-[30px] rounded-full grid place-items-center"
-                        style={{ background: 'rgba(255,255,255,.14)' }}
-                        variants={{ hover: { x: 3, y: -3 } }}
-                        transition={{ duration: 0.25 }}
+                    {p.caseStudy && (
+                      <motion.a
+                        href={p.caseStudy}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-bold text-[14px] text-white mt-6"
+                        whileHover="hover"
                       >
-                        <IconArrow size={13} />
-                      </motion.span>
-                    </motion.span>
+                        {t('projects.cta')}
+                        <motion.span
+                          className="w-[30px] h-[30px] rounded-full grid place-items-center"
+                          style={{ background: 'rgba(255,255,255,.14)' }}
+                          variants={{ hover: { x: 3, y: -3 } }}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <IconArrow size={13} />
+                        </motion.span>
+                      </motion.a>
+                    )}
 
                     {hasDetail && (
                       // Wrapper toujours monté : `detailId` doit exister dans le DOM même fermé,

@@ -30,6 +30,8 @@ export interface Project {
   featured: boolean
   github?: string
   demo?: string
+  /** Destination du bouton « Étude de cas » ; sans valeur, le bouton n'est pas affiché. */
+  caseStudy?: string
   role?: LocalizedText
   year?: string
   license?: string
@@ -318,6 +320,7 @@ export const PROJECTS: Project[] = [
     ],
     featured: false,
     github: 'https://github.com/itsGween/tracker-aiprp',
+    caseStudy: 'https://github.com/itsGween/tracker-aiprp/blob/main/docs/portfolio-etude-de-cas.md',
     role: {
       fr: "Conception et développement complet (schéma de données, application, tests, documentation d'architecture)",
       en: 'End-to-end design and development (data schema, application, tests, architecture documentation)',
