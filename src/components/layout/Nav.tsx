@@ -7,7 +7,7 @@ import { IconMenu, IconDownload, IconGlobe } from '@/components/ui/Icons'
 import { getCvUrl } from '@/data/cv'
 import MobileMenu from './MobileMenu'
 
-const SECTION_IDS = ['projets', 'apropos', 'competences', 'services']
+const SECTION_IDS = ['projets', 'apropos', 'competences', 'services', 'blog']
 
 export default function Nav() {
   const { t, i18n } = useTranslation()
@@ -61,7 +61,8 @@ export default function Nav() {
             <a
               key={l.id}
               href={l.href}
-              className="relative text-[14px] font-medium text-cream/70 hover:text-cream/100 transition-opacity duration-200"
+              aria-current={active === l.id ? 'true' : undefined}
+              className={`relative text-[14px] font-medium hover:text-cream/100 transition-colors duration-200 ${active === l.id ? 'text-cream' : 'text-cream/70'}`}
             >
               {l.label}
               {active === l.id && (
@@ -119,6 +120,7 @@ export default function Nav() {
         {menuOpen && (
           <MobileMenu
             links={links}
+            active={active}
             onClose={() => setMenuOpen(false)}
             onToggleLang={toggleLang}
             lang={i18n.language}

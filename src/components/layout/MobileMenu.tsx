@@ -3,16 +3,17 @@ import { useTranslation } from 'react-i18next'
 import { IconX } from '@/components/ui/Icons'
 import { getCvUrl } from '@/data/cv'
 
-interface Link { label: string; href: string }
+interface Link { label: string; href: string; id: string }
 
 interface Props {
   links: Link[]
+  active: string
   onClose: () => void
   onToggleLang: () => void
   lang: string
 }
 
-export default function MobileMenu({ links, onClose, onToggleLang, lang }: Props) {
+export default function MobileMenu({ links, active, onClose, onToggleLang, lang }: Props) {
   const { t } = useTranslation()
 
   return (
@@ -37,7 +38,8 @@ export default function MobileMenu({ links, onClose, onToggleLang, lang }: Props
           key={l.href}
           href={l.href}
           onClick={onClose}
-          className="font-display text-[44px] text-cream border-b border-line py-2"
+          aria-current={active === l.id ? 'true' : undefined}
+          className={`font-display text-[44px] text-cream border-b py-2 ${active === l.id ? 'border-o1' : 'border-line'}`}
         >
           <span className="font-sans text-[14px] text-o2 mr-4">0{i + 1}</span>
           {l.label}
